@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct feedView: View {
+struct FeedView: View {
     var body: some View {
         Text("Hello, Feed")
     }
@@ -15,6 +15,6 @@ struct feedView: View {
 
 struct fiedView_Previews: PreviewProvider {
     static var previews: some View {
-        feedView()
+        FeedView()
     }
 }
