@@ -1,7 +1,5 @@
- # Little Lemon Food Ordering App
-it's the final project of Meta iOS Developer Professional Certificate
+ # Thread applicatin clone using swiftUI
 
-Its an app that allow the users to order from menu 
 
 
 ## vedio Demo : 
