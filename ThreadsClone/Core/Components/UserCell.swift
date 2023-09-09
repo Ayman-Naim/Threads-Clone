@@ -15,7 +15,7 @@ struct UserCell: View {
                 Text("mnameno_2012")
                 .fontWeight(.semibold)
                 
-                Text(" ayman naim ")
+                Text("  ayman naim ")
         
             } .font(.footnote)
             Spacer()
