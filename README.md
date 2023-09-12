@@ -1,4 +1,4 @@
- # Thread applicatin clone using swiftUI
+ # Thread application clone using swiftUI
 
 
 

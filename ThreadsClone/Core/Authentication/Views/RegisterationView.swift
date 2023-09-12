@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct RegisterationView: View {
-    @State private var email = ""
-    @State private var password = ""
-    @State private var fullName = ""
-    @State private var userName = ""
+    @StateObject var viewModel = RegisterationViewModel()
+   @State private var showAlert = false
     @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack{
@@ -22,28 +20,41 @@ struct RegisterationView: View {
                 .frame(width: 120,height: 120)
             
             VStack{
-                TextField("Enter Your Email", text: $email)
+                TextField("Enter Your Email", text: $viewModel.email)
                     .autocapitalization(.none)
                     .modifier(ThreadsTextfiledModifires())
                 
-                SecureField("Enter Your password", text: $password)
+                SecureField("Enter Your password", text: $viewModel.password)
                     .modifier(ThreadsTextfiledModifires())
                 
-                TextField("Enter Your Full name", text: $fullName)
+                TextField("Enter Your Full name", text: $viewModel.fullName)
                     .modifier(ThreadsTextfiledModifires())
                 
-                TextField("Enter Your username", text: $userName)
+                TextField("Enter Your username", text: $viewModel.userName)
                     .modifier(ThreadsTextfiledModifires())
                 
                 
             }
+            
             Button{
-                
+                Task{ try await viewModel.CreateUser()}
+                    
             }label: {
-                Text("Login")
+                Text("SignUp")
                     .modifier(ButtonsModifires())
                 
             }
+            .onReceive(viewModel.$error,perform:{ error in
+                if error != nil {
+                    showAlert.toggle()
+                }
+            })
+            .alert(isPresented: $showAlert,content: {
+                Alert(
+                    title: Text("Erorr"),
+                    message: Text(viewModel.error?.localizedDescription ?? "" )
+                )
+            })
             Spacer()
             Divider()
             Button{
