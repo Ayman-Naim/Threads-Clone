@@ -10,6 +10,8 @@ import SwiftUI
 struct RegisterationView: View {
     @StateObject var viewModel = RegisterationViewModel()
    @State private var showAlert = false
+    @State private var signUpError = false
+    @State private var signUpSucsess = false
     @Environment(\.dismiss) var dismiss
     var body: some View {
         VStack{
@@ -37,24 +39,67 @@ struct RegisterationView: View {
             }
             
             Button{
-                Task{ try await viewModel.CreateUser()}
+               
+                Task{ try await viewModel.CreateUser()
+                   
+                   
+                }
+                
                     
             }label: {
                 Text("SignUp")
                     .modifier(ButtonsModifires())
                 
             }
+          
             .onReceive(viewModel.$error,perform:{ error in
                 if error != nil {
+                    signUpError.toggle()
                     showAlert.toggle()
                 }
+             
+                        
             })
+            .onReceive(viewModel.$userSignupSucsess, perform: { usersucsees in
+                if usersucsees == true{
+                    signUpSucsess.toggle()
+                    showAlert.toggle()
+                  
+                }
+            })
+            
             .alert(isPresented: $showAlert,content: {
-                Alert(
-                    title: Text("Erorr"),
-                    message: Text(viewModel.error?.localizedDescription ?? "" )
-                )
+                if signUpError == true{
+                   
+                   return  Alert(
+                        title: Text("Erorr"),
+                        message: Text(viewModel.error?.localizedDescription ?? ""),
+                        dismissButton:.default (Text("Cancel"),action:{
+                            signUpError.toggle()
+                        })
+                    )
+                   
+                }
+                if signUpSucsess == true {
+                 return    Alert(
+                       title: Text("Sign up User Sucsessfully"),
+                       message: Text("user Created successfully you can sign in now "),
+                       primaryButton: .default(Text("Cancel"),action: {
+                           signUpSucsess.toggle()
+                       }) ,
+                       secondaryButton:.default(Text("LogIn"),action: {
+                           signUpSucsess.toggle()
+                           dismiss()
+                       })
+                            
+                           
+                    )
+                }
+                
+                return Alert(title:Text("NetworkError"))
             })
+            
+        
             Spacer()
             Divider()
             Button{

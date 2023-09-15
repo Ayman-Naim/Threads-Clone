@@ -7,18 +7,32 @@
 
 import FirebaseAuth
 class AuthService {
+    @Published var userSessoion : FirebaseAuth.User?
+    
+    init(){
+        self.userSessoion = Auth.auth().currentUser
+    }
     
     static let shared = AuthService()
     
     @MainActor
     func login(withEmail email: String , password :String) async throws {
-        
+        do{
+            let result = try  await Auth.auth().signIn(withEmail: email, password: password)
+            self.userSessoion = result.user
+            print("DEBUG: login sucseed\(result.user.uid)")
+        }catch{
+            print("DEBUG: cant login  \(error.localizedDescription)")
+            throw SignError.emailIsSignedBefore
+            
+        }
     }
     
     @MainActor
     func CreateUser(withEmail email: String , password :String ,fullName:String ,userName:String ) async throws {
         do{
             let result = try  await Auth.auth().createUser(withEmail: email, password: password)
+            self.userSessoion = result.user
             print("DEBUG Created user \(result.user.uid)")
         }catch{
             print("DEBUG: Failed to create user with error \(error.localizedDescription)")
@@ -26,4 +40,11 @@ class AuthService {
             
         }
     }
+    
+    func SignOut(){
+        try? Auth.auth().signOut()  // this sign out on backend
+        self.userSessoion = nil // this remove session locally and update the routing 
+    }
+    
+    
 }

@@ -27,6 +27,8 @@
 		E390BB252AACEB6A000F38D3 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E390BB242AACEB6A000F38D3 /* UserCell.swift */; };
 		E390BB282AAD0D10000F38D3 /* ProfileThreadFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E390BB272AAD0D10000F38D3 /* ProfileThreadFilter.swift */; };
 		E390BB2C2AAD16ED000F38D3 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E390BB2B2AAD16ED000F38D3 /* EditProfileView.swift */; };
+		E3B437432AB4DAD700987B0D /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B437422AB4DAD700987B0D /* ContentViewModel.swift */; };
+		E3B437452AB4FDB400987B0D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B437442AB4FDB400987B0D /* LoginViewModel.swift */; };
 		E3E78F532AAFAFD300EF32CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E78F522AAFAFD300EF32CF /* GoogleService-Info.plist */; };
 		E3E78F572AAFB25500EF32CF /* RegisterationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E78F562AAFB25500EF32CF /* RegisterationViewModel.swift */; };
 		E3E78F592AAFBBCD00EF32CF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E78F582AAFBBCD00EF32CF /* AuthService.swift */; };
@@ -55,6 +57,8 @@
 		E390BB242AACEB6A000F38D3 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		E390BB272AAD0D10000F38D3 /* ProfileThreadFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileThreadFilter.swift; sourceTree = "<group>"; };
 		E390BB2B2AAD16ED000F38D3 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		E3B437422AB4DAD700987B0D /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		E3B437442AB4FDB400987B0D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E3E78F522AAFAFD300EF32CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3E78F562AAFB25500EF32CF /* RegisterationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterationViewModel.swift; sourceTree = "<group>"; };
 		E3E78F582AAFBBCD00EF32CF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 		E322BC252AABB2D300729C50 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				E3B437402AB4DAA800987B0D /* View */,
+				E3B437412AB4DAAF00987B0D /* viewModel */,
 				E322BC102AABB06700729C50 /* ContentView.swift */,
 			);
 			path = Root;
@@ -345,6 +351,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E3B437402AB4DAA800987B0D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3B437412AB4DAAF00987B0D /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3B437422AB4DAD700987B0D /* ContentViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		E3E78F542AAFB1DB00EF32CF /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				E3E78F562AAFB25500EF32CF /* RegisterationViewModel.swift */,
+				E3B437442AB4FDB400987B0D /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -480,6 +502,7 @@
 				E390BB2C2AAD16ED000F38D3 /* EditProfileView.swift in Sources */,
 				E322BC402AABC76E00729C50 /* CreateThreadView.swift in Sources */,
 				E3E78F572AAFB25500EF32CF /* RegisterationViewModel.swift in Sources */,
+				E3B437432AB4DAD700987B0D /* ContentViewModel.swift in Sources */,
 				E390BB202AACDE74000F38D3 /* PostCell.swift in Sources */,
 				E390BB282AAD0D10000F38D3 /* ProfileThreadFilter.swift in Sources */,
 				E3E78F592AAFBBCD00EF32CF /* AuthService.swift in Sources */,
@@ -495,6 +518,7 @@
 				E322BC112AABB06700729C50 /* ContentView.swift in Sources */,
 				E322BC0F2AABB06700729C50 /* ThreadsCloneApp.swift in Sources */,
 				E390BB232AACEA7A000F38D3 /* CircularProfileImageView.swift in Sources */,
+				E3B437452AB4FDB400987B0D /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

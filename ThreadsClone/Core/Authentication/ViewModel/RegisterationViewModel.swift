@@ -12,7 +12,7 @@ class RegisterationViewModel:ObservableObject{
     @Published  var password = ""
     @Published  var fullName = ""
     @Published  var userName = ""
-    
+    @Published public  var userSignupSucsess = false
     @Published var formIsValid = false
     
     @MainActor
@@ -26,7 +26,7 @@ class RegisterationViewModel:ObservableObject{
                 fullName: fullName,
                 userName: userName
             )
-            
+            userSignupSucsess.toggle()
         }catch {
             self.error = error
             
@@ -97,6 +97,7 @@ enum SignError:Error,LocalizedError{
     case invalidUserName
     case emailIsSignedBefore
     case emptyFileds
+    case signInError
     var errorDescription: String?{
         switch self{
         case .invalidEmail:
@@ -111,6 +112,8 @@ enum SignError:Error,LocalizedError{
             return "This email address is already in use by another account  please go to login page "
         case .emptyFileds :
             return "You must fill all the Fields"
+        case .signInError :
+            return "The password is invalid or the user or the user is not exsist"
         }
         
     }

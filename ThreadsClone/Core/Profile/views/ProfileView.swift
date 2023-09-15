@@ -15,80 +15,92 @@ struct ProfileView: View {
         return UIScreen.main.bounds.width / count - 16
     }
     var body: some View {
-        ScrollView(showsIndicators: false){
-            //bio and stats
-            VStack(spacing:20) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading,spacing: 12) {
-                        //full name and users
-                        VStack(alignment: .leading, spacing: 4){
-                            Text("Ayman Naim")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                            Text("Mnameno_2012")
-                                .font(.subheadline)
-                        }
-                        Text("this is the bio of my profile")
-                            .font(.footnote)
-                        Text("2 followers")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
-                    Spacer()
-                    CircularProfileImageView()
-                    
-                 
-                }
-                Button{
-                        
-                }label: {
-                        Text("Follow")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .frame(width: 352, height: 32)
-                        .background(.black)
-                        .cornerRadius(8)
-                }
-                
-                //user content list view
-                VStack{
-                    HStack{
-                        ForEach(ProfileThreadFilter.allCases){filter in
-                            VStack{
-                                Text(filter.title)
+        NavigationStack{
+            ScrollView(showsIndicators: false){
+                //bio and stats
+                VStack(spacing:20) {
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading,spacing: 12) {
+                            //full name and users
+                            VStack(alignment: .leading, spacing: 4){
+                                Text("Ayman Naim")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                Text("Mnameno_2012")
                                     .font(.subheadline)
-                                    .fontWeight(selectedFilter==filter ? .semibold : .regular)
-                                
-                                if selectedFilter == filter{
-                                    Rectangle()
-                                        .foregroundColor(.black)
-                                        .frame(width:filterBarWidth ,height: 1)
-                                        .matchedGeometryEffect(id: "itme", in: animation)
-                                }
-                                else{
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width:filterBarWidth ,height: 1)
-                                }
                             }
-                            .onTapGesture {
-                                withAnimation(.spring())
-                                {
-                                    selectedFilter = filter
+                            Text("this is the bio of my profile")
+                                .font(.footnote)
+                            Text("2 followers")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
+                        Spacer()
+                        CircularProfileImageView()
+                        
+                     
+                    }
+                    Button{
+                            
+                    }label: {
+                            Text("Follow")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .frame(width: 352, height: 32)
+                            .background(.black)
+                            .cornerRadius(8)
+                    }
+                    
+                    //user content list view
+                    VStack{
+                        HStack{
+                            ForEach(ProfileThreadFilter.allCases){filter in
+                                VStack{
+                                    Text(filter.title)
+                                        .font(.subheadline)
+                                        .fontWeight(selectedFilter==filter ? .semibold : .regular)
+                                    
+                                    if selectedFilter == filter{
+                                        Rectangle()
+                                            .foregroundColor(.black)
+                                            .frame(width:filterBarWidth ,height: 1)
+                                            .matchedGeometryEffect(id: "itme", in: animation)
+                                    }
+                                    else{
+                                        Rectangle()
+                                            .foregroundColor(.clear)
+                                            .frame(width:filterBarWidth ,height: 1)
+                                    }
+                                }
+                                .onTapGesture {
+                                    withAnimation(.spring())
+                                    {
+                                        selectedFilter = filter
+                                    }
                                 }
                             }
                         }
-                    }
-                    LazyVStack{
-                        ForEach(0 ... 10 ,id:\.self){thread in
-                            PostCell()
+                        LazyVStack{
+                            ForEach(0 ... 10 ,id:\.self){thread in
+                                PostCell()
+                            }
+                        }
+                    }.padding(.vertical,8)
+                    
+                }
+                .toolbar{
+                    ToolbarItem(placement:.navigationBarTrailing){
+                        Button{
+                            AuthService.shared.SignOut()
+                        }label: {
+                            Image(systemName: "line.3.horizontal")
                         }
                     }
-                }.padding(.vertical,8)
-                
-            }
-        }.padding(.horizontal)
+                }
+            }.padding(.horizontal)
+            
+        }
     }
 }
 

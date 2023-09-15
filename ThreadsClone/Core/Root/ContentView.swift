@@ -4,18 +4,23 @@
 //
 //  Created by ayman on 08/09/2023.
 //
-
+import Foundation
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = ContentViewModell()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Group {
+            if viewModel.userSession == nil{
+               // let _ = print(viewModel.userSession)
+                LoginView()
+            }
+            else {
+               // let _ = print(viewModel.userSession)
+                ThreadsTabView()
+            }
         }
-        .padding()
     }
 }
 
