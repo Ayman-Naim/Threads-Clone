@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		725D88FF1518C77D405E327C /* Pods_ThreadsClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3999011900FD65316AB4EC50 /* Pods_ThreadsClone.framework */; };
+		E3090D6F2ABCF38A0081812D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3090D6E2ABCF38A0081812D /* SettingView.swift */; };
 		E322BC0F2AABB06700729C50 /* ThreadsCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322BC0E2AABB06700729C50 /* ThreadsCloneApp.swift */; };
 		E322BC112AABB06700729C50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322BC102AABB06700729C50 /* ContentView.swift */; };
 		E322BC132AABB06900729C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E322BC122AABB06900729C50 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		3999011900FD65316AB4EC50 /* Pods_ThreadsClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThreadsClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3ADFA2FE2446B78CE2A1DC9 /* Pods-ThreadsClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThreadsClone.debug.xcconfig"; path = "Target Support Files/Pods-ThreadsClone/Pods-ThreadsClone.debug.xcconfig"; sourceTree = "<group>"; };
+		E3090D6E2ABCF38A0081812D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		E322BC0B2AABB06700729C50 /* ThreadsClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadsClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E322BC0E2AABB06700729C50 /* ThreadsCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsCloneApp.swift; sourceTree = "<group>"; };
 		E322BC102AABB06700729C50 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				E322BC452AABC7E600729C50 /* ProfileView.swift */,
+				E3090D6E2ABCF38A0081812D /* SettingView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				E322BC0F2AABB06700729C50 /* ThreadsCloneApp.swift in Sources */,
 				E390BB232AACEA7A000F38D3 /* CircularProfileImageView.swift in Sources */,
 				E3B437452AB4FDB400987B0D /* LoginViewModel.swift in Sources */,
+				E3090D6F2ABCF38A0081812D /* SettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

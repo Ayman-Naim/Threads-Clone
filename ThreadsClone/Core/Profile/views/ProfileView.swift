@@ -91,8 +91,8 @@ struct ProfileView: View {
                 }
                 .toolbar{
                     ToolbarItem(placement:.navigationBarTrailing){
-                        Button{
-                            AuthService.shared.SignOut()
+                        NavigationLink{
+                            SettingView()
                         }label: {
                             Image(systemName: "line.3.horizontal")
                         }
