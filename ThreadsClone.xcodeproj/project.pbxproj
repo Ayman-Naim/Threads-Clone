@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		725D88FF1518C77D405E327C /* Pods_ThreadsClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3999011900FD65316AB4EC50 /* Pods_ThreadsClone.framework */; };
 		E3090D6F2ABCF38A0081812D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3090D6E2ABCF38A0081812D /* SettingView.swift */; };
+		E3090D712ABD063B0081812D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3090D702ABD063B0081812D /* User.swift */; };
+		E3090D732ABD14AB0081812D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3090D722ABD14AB0081812D /* UserService.swift */; };
+		E3090D762ABD177D0081812D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3090D752ABD177D0081812D /* ProfileViewModel.swift */; };
 		E322BC0F2AABB06700729C50 /* ThreadsCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322BC0E2AABB06700729C50 /* ThreadsCloneApp.swift */; };
 		E322BC112AABB06700729C50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E322BC102AABB06700729C50 /* ContentView.swift */; };
 		E322BC132AABB06900729C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E322BC122AABB06900729C50 /* Assets.xcassets */; };
@@ -39,6 +42,9 @@
 		3999011900FD65316AB4EC50 /* Pods_ThreadsClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThreadsClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3ADFA2FE2446B78CE2A1DC9 /* Pods-ThreadsClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThreadsClone.debug.xcconfig"; path = "Target Support Files/Pods-ThreadsClone/Pods-ThreadsClone.debug.xcconfig"; sourceTree = "<group>"; };
 		E3090D6E2ABCF38A0081812D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		E3090D702ABD063B0081812D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E3090D722ABD14AB0081812D /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		E3090D752ABD177D0081812D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E322BC0B2AABB06700729C50 /* ThreadsClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadsClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E322BC0E2AABB06700729C50 /* ThreadsCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsCloneApp.swift; sourceTree = "<group>"; };
 		E322BC102AABB06700729C50 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +102,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E3090D742ABD17560081812D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3090D752ABD177D0081812D /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E322BC022AABB06700729C50 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +163,7 @@
 		E322BC1E2AABB1DE00729C50 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E3090D722ABD14AB0081812D /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -156,6 +171,7 @@
 		E322BC202AABB1EB00729C50 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E3090D702ABD063B0081812D /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +297,7 @@
 		E322BC3A2AABC62B00729C50 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E3090D742ABD17560081812D /* ViewModel */,
 				E390BB292AAD16AE000F38D3 /* EditProfile */,
 				E390BB262AAD0CF6000F38D3 /* Model */,
 				E322BC442AABC7CB00729C50 /* views */,
@@ -515,14 +532,17 @@
 				E322BC322AABC11900729C50 /* ThreadsTabView.swift in Sources */,
 				E322BC282AABB37100729C50 /* LoginView.swift in Sources */,
 				E390BB252AACEB6A000F38D3 /* UserCell.swift in Sources */,
+				E3090D762ABD177D0081812D /* ProfileViewModel.swift in Sources */,
 				E322BC2D2AABBD7600729C50 /* ThreadsTextFieldsModifires .swift in Sources */,
 				E322BC362AABC57700729C50 /* FeedView.swift in Sources */,
 				E322BC2A2AABBB0800729C50 /* RegisterationView.swift in Sources */,
 				E322BC112AABB06700729C50 /* ContentView.swift in Sources */,
 				E322BC0F2AABB06700729C50 /* ThreadsCloneApp.swift in Sources */,
 				E390BB232AACEA7A000F38D3 /* CircularProfileImageView.swift in Sources */,
+				E3090D732ABD14AB0081812D /* UserService.swift in Sources */,
 				E3B437452AB4FDB400987B0D /* LoginViewModel.swift in Sources */,
 				E3090D6F2ABCF38A0081812D /* SettingView.swift in Sources */,
+				E3090D712ABD063B0081812D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,17 +24,19 @@ struct RegisterationView: View {
             VStack{
                 TextField("Enter Your Email", text: $viewModel.email)
                     .autocapitalization(.none)
+                    .autocorrectionDisabled()
                     .modifier(ThreadsTextfiledModifires())
                 
                 SecureField("Enter Your password", text: $viewModel.password)
                     .modifier(ThreadsTextfiledModifires())
-                
+                    .autocorrectionDisabled()
                 TextField("Enter Your Full name", text: $viewModel.fullName)
                     .modifier(ThreadsTextfiledModifires())
-                
+                    .autocorrectionDisabled()
                 TextField("Enter Your username", text: $viewModel.userName)
                     .modifier(ThreadsTextfiledModifires())
-                
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
                 
             }
             
@@ -85,10 +87,11 @@ struct RegisterationView: View {
                        title: Text("Sign up User Sucsessfully"),
                        message: Text("user Created successfully you can sign in now "),
                        primaryButton: .default(Text("Cancel"),action: {
-                           signUpSucsess.toggle()
+                          
+                           //signUpSucsess.toggle()
                        }) ,
                        secondaryButton:.default(Text("LogIn"),action: {
-                           signUpSucsess.toggle()
+                           //signUpSucsess.toggle()
                            dismiss()
                        })
                             
