@@ -27,6 +27,7 @@ class RegisterationViewModel:ObservableObject{
                 userName: userName
             )
             userSignupSucsess.toggle()
+           
         }catch {
             self.error = error
             
