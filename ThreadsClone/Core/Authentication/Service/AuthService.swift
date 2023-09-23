@@ -50,6 +50,7 @@ class AuthService {
         self.userSessoion = nil // this remove session locally and update the routing
         UserService.shared.LogOutReset() // to set the user to nil as you sign out 
     }
+    
     @MainActor
     private func uploadUserData(
         withEmail email: String,
