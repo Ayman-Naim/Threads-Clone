@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 class UserService {
     @Published var currentUser : User?
-   
+    
     static let shared = UserService()
     
     init() {
@@ -28,6 +28,14 @@ class UserService {
         self.currentUser = user
         print("DEBUG: user is \(user)")
     }
+    
+    static func fetchUsers() async throws ->[User]{
+        guard let currentUid = Auth.auth().currentUser?.uid  else {return []}
+        let UsersData =  try await Firestore.firestore().collection("users").getDocuments()
+        let users = UsersData.documents.compactMap({try? $0.data(as: User.self)})
+        return users.filter({$0.id != currentUid})
+    }
+    
     
     func LogOutReset(){
         self.currentUser = nil 
