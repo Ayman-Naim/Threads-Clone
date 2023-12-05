@@ -36,6 +36,8 @@
 		E390BB252AACEB6A000F38D3 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E390BB242AACEB6A000F38D3 /* UserCell.swift */; };
 		E390BB282AAD0D10000F38D3 /* ProfileThreadFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E390BB272AAD0D10000F38D3 /* ProfileThreadFilter.swift */; };
 		E390BB2C2AAD16ED000F38D3 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E390BB2B2AAD16ED000F38D3 /* EditProfileView.swift */; };
+		E3A2A74E2B1FB53B00EBCEEE /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A2A74D2B1FB53B00EBCEEE /* EditProfileViewModel.swift */; };
+		E3A2A7502B1FB91B00EBCEEE /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A2A74F2B1FB91B00EBCEEE /* ImageUploader.swift */; };
 		E3B437432AB4DAD700987B0D /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B437422AB4DAD700987B0D /* ContentViewModel.swift */; };
 		E3B437452AB4FDB400987B0D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B437442AB4FDB400987B0D /* LoginViewModel.swift */; };
 		E3E78F532AAFAFD300EF32CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E78F522AAFAFD300EF32CF /* GoogleService-Info.plist */; };
@@ -75,6 +77,8 @@
 		E390BB242AACEB6A000F38D3 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		E390BB272AAD0D10000F38D3 /* ProfileThreadFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileThreadFilter.swift; sourceTree = "<group>"; };
 		E390BB2B2AAD16ED000F38D3 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		E3A2A74D2B1FB53B00EBCEEE /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		E3A2A74F2B1FB91B00EBCEEE /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		E3B437422AB4DAD700987B0D /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		E3B437442AB4FDB400987B0D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E3E78F522AAFAFD300EF32CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				E3090D722ABD14AB0081812D /* UserService.swift */,
+				E3A2A74F2B1FB91B00EBCEEE /* ImageUploader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 		E390BB292AAD16AE000F38D3 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
+				E3A2A74C2B1FB52200EBCEEE /* ViewModel */,
 				E390BB2A2AAD16D6000F38D3 /* Views */,
 			);
 			path = EditProfile;
@@ -416,6 +422,14 @@
 				E390BB2B2AAD16ED000F38D3 /* EditProfileView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E3A2A74C2B1FB52200EBCEEE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3A2A74D2B1FB53B00EBCEEE /* EditProfileViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E3B437402AB4DAA800987B0D /* View */ = {
@@ -578,6 +592,8 @@
 				E322BC2F2AABBF1C00729C50 /* ButtonsModifires.swift in Sources */,
 				E322BC3D2AABC67F00729C50 /* ExploreView.swift in Sources */,
 				E322BC462AABC7E600729C50 /* ProfileView.swift in Sources */,
+				E3A2A7502B1FB91B00EBCEEE /* ImageUploader.swift in Sources */,
+				E3A2A74E2B1FB53B00EBCEEE /* EditProfileViewModel.swift in Sources */,
 				E322BC322AABC11900729C50 /* ThreadsTabView.swift in Sources */,
 				E322BC282AABB37100729C50 /* LoginView.swift in Sources */,
 				E3894A6B2ABF976100332527 /* ProfileHeaderView.swift in Sources */,
