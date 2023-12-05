@@ -7,10 +7,14 @@
 
 import Foundation
 import Combine
+import PhotosUI
+import SwiftUI
 
 
 class CurrentUserProfileViewModel :ObservableObject {
     @Published var currentUser :User?
+   
+   
     private var cancellable = Set<AnyCancellable>()
     init(){
         setProfileData()
@@ -23,6 +27,7 @@ class CurrentUserProfileViewModel :ObservableObject {
         }.store(in:&cancellable)
         
     }
+
     
     
     
