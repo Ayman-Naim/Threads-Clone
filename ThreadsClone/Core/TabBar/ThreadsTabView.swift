@@ -48,16 +48,19 @@ struct ThreadsTabView: View {
                 .onAppear{selectedTab = 4}
                 .tag(4)
         }
+        .tint(Color(UIColor(named: "TabColor") ?? .black))
         .onChange(of: selectedTab, perform: { newValue in
             showCreateThreadView = selectedTab == 2
         })
+        
         .sheet(isPresented: $showCreateThreadView, onDismiss: {
             selectedTab = 0
         }, content:{
             CreateThreadView()
         })
-        .tint(.black)
+       
     }
+   
 }
 
 struct ThreadsTabView_Previews: PreviewProvider {

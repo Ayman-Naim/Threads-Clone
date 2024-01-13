@@ -36,7 +36,10 @@ class UserService {
         return users.filter({$0.id != currentUid})
     }
     
-    
+    static func fetchUser (withUid uid : String )async throws -> User {
+        let userData = try await Firestore.firestore().collection("users").document(uid).getDocument()
+        return try userData.data(as: User.self)
+    }
     func LogOutReset(){
         self.currentUser = nil 
     }
