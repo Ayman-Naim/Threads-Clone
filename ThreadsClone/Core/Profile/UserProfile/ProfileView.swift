@@ -29,7 +29,7 @@ struct ProfileView: View {
                 }
                 
                 //user content list view
-                UserContentListView()
+                UserContentListView(user: user)
                 
             }
            // not needed in  other user navgation profile
