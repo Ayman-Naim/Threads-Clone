@@ -1,0 +1,19 @@
+//
+//  CreateThreadViewModel.swift
+//  ThreadsClone
+//
+//  Created by ayman on 13/01/2024.
+//
+
+import Foundation
+import FirebaseAuth
+import FirebaseFirestore
+class CreateThreadViewModel:ObservableObject{
+  
+    func uploadThread(caption:String)async throws {
+        guard let uid = Auth.auth().currentUser?.uid else {return }
+        let thread = Thread(ownerUid: uid, timeStamp: Timestamp(), caption: caption, likes: 0)
+        try await  ThreadService.uploadThread(thread)
+    }
+    
+}

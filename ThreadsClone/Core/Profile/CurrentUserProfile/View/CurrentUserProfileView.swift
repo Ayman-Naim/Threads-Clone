@@ -11,6 +11,8 @@ struct CurrentUserProfileView: View {
     @StateObject var viewModel = CurrentUserProfileViewModel()
     @State private var selectedFilter :ProfileThreadFilter = .threads
     @Namespace var animation
+    @State private var showEditProfile =  false
+    
     private var filterBarWidth:CGFloat{
         let count = CGFloat(ProfileThreadFilter.allCases.count)
         return UIScreen.main.bounds.width / count - 16
@@ -26,7 +28,7 @@ struct CurrentUserProfileView: View {
                 VStack(spacing:20) {
                     ProfileHeaderView(user: currentUser)
                     Button{
-                            
+                        showEditProfile.toggle()
                     }label: {
                             Text("Edit Profile")
                             .font(.subheadline)
@@ -42,9 +44,15 @@ struct CurrentUserProfileView: View {
                     }
                     
                     //user content list view
-                    UserContentListView()
-                    
-                }
+                    if let user = currentUser{
+                        UserContentListView(user: user)
+                    }
+                }.sheet(isPresented: $showEditProfile, content: {
+                    if let user =  currentUser{
+                        EditProfileView(user: user)
+                    }
+                })
+                
                 .toolbar{
                     ToolbarItem(placement:.navigationBarTrailing){
                         NavigationLink{
