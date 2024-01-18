@@ -6,12 +6,19 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import Combine
 @MainActor
 class FeedViewModel:ObservableObject {
     @Published var threads = [Thread]()
+    @Published var currentUser:User?
+    
+    private var cancellable = Set<AnyCancellable>()
     
     init() {
         Task{ try await fetchThreads()}
+        fetchUser()
     }
     
     
@@ -27,4 +34,11 @@ class FeedViewModel:ObservableObject {
             threads[i].user = threadUser
         }
     }
+    func fetchUser(){
+        UserService.shared.$currentUser.sink{ [weak self ] user in
+            self?.currentUser = user
+            print("DEBUG: user in view model from combine is \(user)")
+        }.store(in:&cancellable)
+    }
+  
 }

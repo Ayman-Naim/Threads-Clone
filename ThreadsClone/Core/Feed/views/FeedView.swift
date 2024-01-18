@@ -9,6 +9,9 @@ import SwiftUI
 
 struct FeedView: View {
     @StateObject  var viewModel = FeedViewModel()
+    private var currentUser:User?{
+        return viewModel.currentUser
+    }
     var body: some View {
         NavigationStack{
             ScrollView(showsIndicators:false){
@@ -16,7 +19,7 @@ struct FeedView: View {
                     
                     ForEach(viewModel.threads){
                         thread in
-                        PostCell(thread: thread)
+                        PostCell(thread: thread,currentUser: currentUser ?? nil)
                         
                     }
                 }

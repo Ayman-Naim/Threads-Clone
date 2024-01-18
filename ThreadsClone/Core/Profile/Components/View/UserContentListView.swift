@@ -51,7 +51,7 @@ struct UserContentListView: View {
             }
             LazyVStack{
                 ForEach(viewModel.threads){thread in
-                    PostCell(thread: thread)
+                    PostCell(thread: thread,currentUser: viewModel.user)
                 }
             }
         }.padding(.vertical,8)
