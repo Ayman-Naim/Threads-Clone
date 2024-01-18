@@ -16,12 +16,23 @@ struct Thread:Identifiable,Codable{
     let caption : String
     var likes : Int
     var user : User?
-    
-    
-    
+    var likesAcounts : [String]?
+    var repliesCount :Int
+    var repliesAccounts:[String]?
     var id : String {
         return  threadId ?? NSUUID().uuidString
     }
     
+    mutating func like(LikesUser:String,liked:Bool){
+        if liked{
+            self.likes += 1
+            self.likesAcounts?.append(LikesUser)
+        }
+        else{
+            self.likes -= 1
+            self.likesAcounts?.removeAll{$0 == LikesUser}
+        }
+        
+    }
 }
 
