@@ -15,6 +15,10 @@ struct User : Identifiable , Codable ,Hashable{
     let userName: String
     var profileImageUrl: String?
     var bio: String?
+    var link:String?
+    var privare : Bool?
+    var following:[String]?
+    var follwers:[String]?
     
     init(id:String,fullName:String,email:String,userName:String) {
         self.id = id
@@ -23,5 +27,7 @@ struct User : Identifiable , Codable ,Hashable{
         self.userName = userName
         self.profileImageUrl = nil
         self.bio = nil
+        self.follwers = []
+        self.following = []
     }
 }

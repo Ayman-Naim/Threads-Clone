@@ -50,11 +50,19 @@ struct UserContentListView: View {
                 }
             }
             LazyVStack{
-                ForEach(viewModel.threads){thread in
-                    PostCell(thread: thread,currentUser: viewModel.user)
+                ForEach($viewModel.threads){thread in
+                    PostCell(thread: thread,currentUser: viewModel.user,threadsArray: $viewModel.threads)
                 }
             }
+            
         }.padding(.vertical,8)
+            .onAppear{
+                Task{
+                    
+                   try await  viewModel.fetchUserThreads()
+                }
+                
+            }
 
     }
 }

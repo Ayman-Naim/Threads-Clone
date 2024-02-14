@@ -12,12 +12,14 @@ struct CircularProfileImageView: View {
     let size:ProfileImageSize
    
     var body: some View {
+              
         if let imageUrl = user?.profileImageUrl{
             KFImage(URL(string: imageUrl))
                 .resizable()
                 .scaledToFill()
                 .frame(width: size.dimention, height: size.dimention)
                 .clipShape(Circle())
+                
         }
         else {
             Image(systemName: "person.circle.fill")
