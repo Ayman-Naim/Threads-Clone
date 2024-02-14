@@ -15,7 +15,7 @@ struct ProfileView: View {
         ScrollView(showsIndicators: false){
             //bio and stats
             VStack(spacing:20) {
-                ProfileHeaderView(user: user)
+                ProfileHeaderView(user: State(initialValue: user))
                 Button{
                     
                 }label: {
@@ -43,6 +43,7 @@ struct ProfileView: View {
                 }
             }*/
         }
+       
         .navigationBarTitleDisplayMode(.inline)
         .padding(.horizontal)
         

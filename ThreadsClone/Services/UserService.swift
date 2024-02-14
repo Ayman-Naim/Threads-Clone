@@ -51,4 +51,9 @@ class UserService {
         ])
         self.currentUser?.profileImageUrl = imageUrl
     }
+    func updateBio(bio:String,link:String,privatee:Bool)async throws {
+        guard let currentUid =  Auth.auth().currentUser?.uid else {return }
+        try await Firestore.firestore().collection("users").document(currentUid).updateData(["bio":bio , "link":link ,"private":privatee])
+    }
+    
 }

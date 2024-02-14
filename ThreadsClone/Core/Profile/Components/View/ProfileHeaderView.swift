@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ProfileHeaderView: View {
-    let user : User?
-    
-    init (user :User?){
-        self.user = user
+    @State var  user : User?
+    @State var showFollowList = false
+    init (user :State <User?>){
+        self._user = user
     }
     var body: some View {
         HStack(alignment: .top) {
@@ -28,20 +28,32 @@ struct ProfileHeaderView: View {
                     Text(bio)
                         .font(.footnote)
                 }
-                Text("2 followers")
-                    .font(.caption)
-                    .foregroundColor(.gray)
+                Button{
+                    showFollowList.toggle()
+                }label: {
+                    let folowers = "\(user?.follwers?.count ?? 0)"
+                    Text("\(folowers) followres")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                
             }
             Spacer()
-            CircularProfileImageView(user: user,size: .small)
-            
+               
+            CircularProfileImageView(user: user,size: .medium)
+                
+        }
+        .sheet(isPresented: $showFollowList) {
+          
+                FollowersView(user: $user)
             
         }
+        
     }
 }
 
 struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileHeaderView(user: dev.user)
+        ProfileHeaderView(user: State(initialValue: dev.user))
     }
 }
