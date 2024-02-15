@@ -16,4 +16,13 @@ class CreateThreadViewModel:ObservableObject{
         try await  ThreadService.uploadThread(thread)
     }
     
+    
+    func UpdateThread(caption:String,thread: Thread)async throws {
+      
+            let snapshot = try await Firestore.firestore().collection("threads").document(thread.threadId!).getDocument()
+            let threadData = try snapshot.data(as: Thread.self)
+            try await Firestore.firestore().collection("threads").document(thread.threadId!).setData(["caption":caption],merge: true)
+         
+
+    }
 }

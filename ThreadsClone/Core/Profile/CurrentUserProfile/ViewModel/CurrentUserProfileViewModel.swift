@@ -20,7 +20,8 @@ class CurrentUserProfileViewModel :ObservableObject {
         setProfileData()
     }
        
-    private func setProfileData(){
+     func setProfileData() {
+         Task {try await UserService.shared.fetchCurrentUser()}
         UserService.shared.$currentUser.sink{ [weak self ] user in
             self?.currentUser = user
             print("DEBUG: user in view model from combine is \(user)")

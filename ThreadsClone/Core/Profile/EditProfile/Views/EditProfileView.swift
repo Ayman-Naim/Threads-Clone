@@ -91,7 +91,8 @@ struct EditProfileView: View {
                 }
                 ToolbarItem(placement:.navigationBarTrailing){
                     Button("Done"){
-                        Task {try await viewModel.updateUserData()
+                        Task {try await viewModel.updateUserData(Bio: bio,link: link,private: isPrivateProfile)
+                            try await UserService.shared.fetchCurrentUser()
                             dismiss()
                         }
                     }

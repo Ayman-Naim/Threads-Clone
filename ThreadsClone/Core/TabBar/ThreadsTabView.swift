@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
-
+import FirebaseFirestore
 struct ThreadsTabView: View {
     @State private var selectedTab = 0
     @State private var showCreateThreadView = false
+    @State var edit = false
+    @State var anyThread = Thread(ownerUid: "", timeStamp: Timestamp(), caption: "", likes: 0, repliesCount: 0  )
     var body: some View {
         TabView(selection: $selectedTab) {
           FeedView()
@@ -55,8 +57,9 @@ struct ThreadsTabView: View {
         
         .sheet(isPresented: $showCreateThreadView, onDismiss: {
             selectedTab = 0
+           
         }, content:{
-            CreateThreadView()
+            CreateThreadView(thread: $anyThread, edit: _edit)
         })
        
     }

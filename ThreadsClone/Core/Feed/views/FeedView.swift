@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     @StateObject  var viewModel = FeedViewModel()
+    
     private var currentUser:User?{
         return viewModel.currentUser
     }
@@ -17,9 +18,9 @@ struct FeedView: View {
             ScrollView(showsIndicators:false){
                 LazyVStack{
                     
-                    ForEach(viewModel.threads){
+                    ForEach($viewModel.threads){
                         thread in
-                        PostCell(thread: thread,currentUser: currentUser ?? nil)
+                        PostCell(thread: thread,currentUser: currentUser ?? nil, threadsArray: $viewModel.threads)
                         
                     }
                 }
@@ -31,6 +32,17 @@ struct FeedView: View {
             .navigationTitle("Threads")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear{
+            
+            
+            Task{
+                
+                try await viewModel.fetchThreads()
+               
+                
+            }
+        }
+    
         .toolbar{
             ToolbarItem(placement: .navigationBarTrailing){
                 Button{
@@ -42,6 +54,7 @@ struct FeedView: View {
             }
         }
     }
+        
 }
 
 struct fiedView_Previews: PreviewProvider {

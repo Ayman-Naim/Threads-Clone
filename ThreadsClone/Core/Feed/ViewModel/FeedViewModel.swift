@@ -19,10 +19,12 @@ class FeedViewModel:ObservableObject {
     init() {
         Task{ try await fetchThreads()}
         fetchUser()
+      
     }
     
     
     func fetchThreads () async throws {
+        self.threads.removeAll()
         self.threads = try await ThreadService.fetchThreads()
         try await fetchUserDataForThreads()
     }

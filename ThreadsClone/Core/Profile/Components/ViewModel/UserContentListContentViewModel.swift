@@ -16,6 +16,7 @@ class UserContentListContentViewModel :ObservableObject {
     }
     @MainActor
     func fetchUserThreads()async throws {
+        self.threads.removeAll()
         var threads =  try await ThreadService.fetchUserThreads(uid: user.id)
         
         

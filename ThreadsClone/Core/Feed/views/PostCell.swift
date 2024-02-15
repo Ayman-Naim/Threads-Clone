@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct PostCell: View {
-    var thread : Thread
-    
-    @StateObject  var viewModel : PostCellViewModel
+    @Binding var thread : Thread
+    @State var replyClicked = false
+    @StateObject  var viewModel = PostCellViewModel()
     @State var likeClicked = false
     var currentUser: User?
  
-    
-    init(thread : Thread  ,currentUser:User?){
-        self._viewModel = StateObject(wrappedValue: PostCellViewModel(thred: thread))
-        self.currentUser = currentUser
-        self.thread = thread
-    }
+    @State var deleteThreadAlert  = false
+    @Binding var threadsArray : [Thread]
+    @State var settingButton =  true
+    @State var editThread =  false
+    init(thread : Binding <Thread> ,currentUser:User? , threadsArray : Binding<[Thread]>){
+        //self._viewModel = StateObject(wrappedValue: PostCellViewModel(thred: thread))
+        self.currentUser  = currentUser
+        self._thread = thread
+        self._threadsArray = threadsArray
+        
+        }
     var body: some View {
         VStack{
             HStack(alignment: .top,spacing: 12)
@@ -37,13 +42,28 @@ struct PostCell: View {
                             .font(.caption)
                             .foregroundColor(Color(.systemGray3))
                             .tint(Color(UIColor(named: "TabColor") ?? .black))
-                        Button{
+                        
+                      //  if thread.ownerUid == currentUser?.id{
+                        Menu{
+                          
+                            Button{
+                                editThread.toggle()
+                                
+                            }label: {
+                                Label("Edit", systemImage: "pencil.line")
+                            }
+                            Button(role:.destructive){
+                                deleteThreadAlert.toggle()
+                            }label: {
+                                Label("Delete", systemImage: "minus.circle")
+                            }
                             
-                        } label: {
+                        }label: {
                             Image(systemName: "ellipsis")
                                 .tint(Color(UIColor(named: "TabColor") ?? .black))
-                            
                         }
+                        .disabled(thread.ownerUid != currentUser?.id)
+                      //  }
                         
                     }
                     
@@ -53,12 +73,15 @@ struct PostCell: View {
                     
                     
                     HStack(spacing: 16){
+                        
+                        
                         Button{
                             likeClicked.toggle()
-                            print("LikedButton:",likeClicked)
-                            viewModel.thread?.like(LikesUser: currentUser!.id, liked: likeClicked)
-                           
                             Task {
+                              
+                               
+                               // print("LikedButton:",likeClicked)
+                                thread.like(LikesUser: viewModel.Currentuser!.id, liked: likeClicked)
                                 try await viewModel.LikeThread(thread, liked: likeClicked)
                                     
                             }
@@ -70,16 +93,14 @@ struct PostCell: View {
                                .foregroundColor(likeClicked ? .red:Color(UIColor(named: "TabColor") ?? .black))
                                 .tint(Color(UIColor(named: "TabColor") ?? .black))
                             
-                        } .onAppear{
-                          
-                            if ((viewModel.thread?.likesAcounts?.firstIndex(of:(currentUser?.id)! )) != nil){
-                                likeClicked = true
-                            }else{
-                                likeClicked = false
-                            }
                         }
                         
+                        
+                        
+                        
+                        
                         Button{
+                            replyClicked.toggle()
                             
                         }label: {
                             Image(systemName: "bubble.right")
@@ -100,19 +121,24 @@ struct PostCell: View {
                         }label: {
                             Image(systemName: "paperplane")
                                 .foregroundColor(Color(UIColor(named: "TabColor") ?? .black))
-                                
                             }
+                   
+                           
+                            
+                        
                     }.foregroundColor(.black)
                         .padding(.vertical , 8 )
+                        
+                        
                     HStack(spacing: 3){
-                        if viewModel.thread?.likes != 0{
+                        if thread.likes != 0{
                             Text("Likes:")
-                            Text("\(viewModel.thread!.likes)")
+                            Text("\(thread.likes)")
                         }
-                        if viewModel.thread?.repliesCount != 0 {
+                        if thread.repliesCount != 0 {
                             Text("-")
                             Text("replies")
-                            Text("\(viewModel.thread!.repliesCount)")
+                            Text("\(thread.repliesCount)")
                            
                         }
                     }
@@ -125,15 +151,57 @@ struct PostCell: View {
             
             Divider()
         }.padding()
+            .sheet(isPresented: $replyClicked) {
+                Replay(threadUser: $thread)
+            }
+            .sheet(isPresented: $editThread) {
+                CreateThreadView(thread: $thread, edit: _editThread)
+            }
+            .alert(isPresented: $deleteThreadAlert) {
+                
+                Alert(title: Text("Delete Thread "),message: Text("Are you sure you want delete this thread ")
+                      , primaryButton: .destructive(Text("Ok"),action: {
+                    //
+                 
+                    Task{
+                        try await viewModel.DeleteThread(thread: thread
+                        )
+                        if self.threadsArray.count == 1 {
+                            self.threadsArray = []
+
+                        }else {
+                            self.threadsArray.removeAll{
+                                $0.id == thread.id
+                            }
+                        }
+                    }
+                   
+                   
+                })
+                      , secondaryButton: .cancel(Text("Cancel"))
+                )
+                
+                
+            }
+
+            .onAppear{
+                
+                likeClicked = false
+                if  currentUser?.id != nil && ((thread.likesAcounts?.firstIndex(of:(viewModel.Currentuser?.id)! )) != nil){
+                    likeClicked = true
+                }else{
+                    likeClicked = false
+                }
+               
+            }
+      
             
     }
-   /* mutating func ThreadLiked(){
-        self.thread.like(LikesUser: (currentUser?.id)!, liked: likeClicked)
-    }*/
+        
 }
 
 struct PostCell_Previews: PreviewProvider {
     static var previews: some View {
-        PostCell(thread: dev.thread, currentUser: dev.user)
+        PostCell(thread: .constant(dev.thread), currentUser: dev.user, threadsArray: .constant([dev.thread]))
     }
 }

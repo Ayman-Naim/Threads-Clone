@@ -26,7 +26,7 @@ struct CurrentUserProfileView: View {
             ScrollView(showsIndicators: false){
                 //bio and stats
                 VStack(spacing:20) {
-                    ProfileHeaderView(user: currentUser)
+                    ProfileHeaderView(user: State(initialValue: currentUser))
                     Button{
                         showEditProfile.toggle()
                     }label: {
@@ -65,6 +65,16 @@ struct CurrentUserProfileView: View {
             }.padding(.horizontal)
             
         }
+        .onAppear{
+     
+            viewModel.setProfileData()
+            
+            }
+        .refreshable{
+            viewModel.setProfileData()
+            
+        }
+        
     }
 }
 

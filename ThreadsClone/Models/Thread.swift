@@ -13,12 +13,13 @@ struct Thread:Identifiable,Codable{
     
     let ownerUid:String
     let timeStamp:Timestamp
-    let caption : String
+    var caption : String
     var likes : Int
     var user : User?
     var likesAcounts : [String]?
     var repliesCount :Int
     var repliesAccounts:[String]?
+    var replys : [String:String]?
     var id : String {
         return  threadId ?? NSUUID().uuidString
     }
