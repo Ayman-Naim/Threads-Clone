@@ -41,6 +41,10 @@ class EditProfileViewModel : ObservableObject {
     }
     private func updateBio(bio:String,link:String,private:Bool)async throws {
         try await UserService.shared.updateBio(bio: bio,link: link,privatee: `private`)
+        UserService.shared.currentUser?.bio = bio
+        UserService.shared.currentUser?.link = link
+        UserService.shared.currentUser?.privare = `private`
+        
        
     }
     

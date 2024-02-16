@@ -185,14 +185,16 @@ struct PostCell: View {
             }
 
             .onAppear{
-                
+                viewModel.Currentuser = UserService.shared.currentUser
                 likeClicked = false
-                if  currentUser?.id != nil && ((thread.likesAcounts?.firstIndex(of:(viewModel.Currentuser?.id)! )) != nil){
-                    likeClicked = true
-                }else{
-                    likeClicked = false
+                if let id = viewModel.Currentuser?.id{
+                    if  currentUser?.id != nil && ((thread.likesAcounts?.firstIndex(of:(id) )) != nil){
+                        likeClicked = true
+                    }else{
+                        likeClicked = false
+                    }
+                    
                 }
-               
             }
       
             

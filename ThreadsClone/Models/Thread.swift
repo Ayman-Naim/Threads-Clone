@@ -18,8 +18,8 @@ struct Thread:Identifiable,Codable{
     var user : User?
     var likesAcounts : [String]?
     var repliesCount :Int
-    var repliesAccounts:[String]?
-    var replys : [String:String]?
+    var repliesAccounts:[User]?
+    var replys : [ThreadReplay]?
     var id : String {
         return  threadId ?? NSUUID().uuidString
     }

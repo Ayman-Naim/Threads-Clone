@@ -17,8 +17,10 @@ class FeedViewModel:ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        Task{ try await fetchThreads()}
-        fetchUser()
+        Task{
+            fetchUser()
+            try await fetchThreads()}
+       
       
     }
     
@@ -36,9 +38,14 @@ class FeedViewModel:ObservableObject {
             threads[i].user = threadUser
         }
     }
+    @MainActor
     func fetchUser(){
         UserService.shared.$currentUser.sink{ [weak self ] user in
-            self?.currentUser = user
+            DispatchQueue.main.async {
+                self?.currentUser = user
+            }
+            
+           
             print("DEBUG: user in view model from combine is \(user)")
         }.store(in:&cancellable)
     }

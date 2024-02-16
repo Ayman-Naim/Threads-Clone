@@ -83,6 +83,7 @@ struct SettingView: View {
                             message: Text("Are you sure you want to log out"),
                             primaryButton:.destructive(Text("Log Out"),action: {
                                 AuthService.shared.SignOut()
+                                
                             }),
                             secondaryButton: .cancel(Text("Cancel"))
                         )
