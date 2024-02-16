@@ -18,17 +18,22 @@ struct CurrentUserProfileView: View {
         return UIScreen.main.bounds.width / count - 16
     }
     
-//     private var currentUser:User?{
-//        return UserService.shared.currentUser
+     private var currentUser:User?{
+        return UserService.shared.currentUser
+        }
+    
+   // @State var currentUser2 : User?
+//    init() {
+//        self.currentUser = UserService.shared.currentUser
 //    }
-    @State var currentUser : User? = UserService.shared.currentUser
+    
  
     var body: some View {
         NavigationStack{
             ScrollView(showsIndicators: false){
                 //bio and stats
                 VStack(spacing:20) {
-                    ProfileHeaderView(user:  _currentUser)
+                    ProfileHeaderView(user:  State (initialValue: currentUser))
                     Button{
                         showEditProfile.toggle()
                     }label: {
@@ -70,14 +75,14 @@ struct CurrentUserProfileView: View {
         .onAppear{
             Task{
                try await  viewModel.setProfileData()
-                self.currentUser = UserService.shared.currentUser
+                //self.currentUser = UserService.shared.currentUser
             }
            
             }
         .refreshable{
             Task{
                try await  viewModel.setProfileData()
-                self.currentUser = UserService.shared.currentUser
+               // self.currentUser = UserService.shared.currentUser
             }
             
             

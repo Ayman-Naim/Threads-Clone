@@ -10,7 +10,7 @@ import SwiftUI
 struct PostCell: View {
     @Binding var thread : Thread
     @State var replyClicked = false
-    @StateObject  var viewModel = PostCellViewModel()
+    @StateObject  var viewModel : PostCellViewModel //= PostCellViewModel()
     @State var likeClicked = false
     var currentUser: User?
  
@@ -19,7 +19,7 @@ struct PostCell: View {
     @State var settingButton =  true
     @State var editThread =  false
     init(thread : Binding <Thread> ,currentUser:User? , threadsArray : Binding<[Thread]>){
-        //self._viewModel = StateObject(wrappedValue: PostCellViewModel(thred: thread))
+        self._viewModel = StateObject(wrappedValue: PostCellViewModel(currentUser: currentUser))
         self.currentUser  = currentUser
         self._thread = thread
         self._threadsArray = threadsArray
@@ -188,7 +188,7 @@ struct PostCell: View {
                 viewModel.Currentuser = UserService.shared.currentUser
                 likeClicked = false
                 if let id = viewModel.Currentuser?.id{
-                    if  currentUser?.id != nil && ((thread.likesAcounts?.firstIndex(of:(id) )) != nil){
+                    if  currentUser?.id != nil && ((thread.likesAcounts?.firstIndex(of:(id))) != nil){
                         likeClicked = true
                     }else{
                         likeClicked = false

@@ -11,11 +11,11 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 class PostCellViewModel :ObservableObject{
     // @Published var thread : Thread?
-    
-//    init(thred : Thread ){
-//        self.thread = thred
-//    }
     @Published var Currentuser : User? = UserService.shared.currentUser
+    init(currentUser : User?){
+        self.Currentuser = Currentuser
+    }
+   
     
     func LikeThread(_ thread :  Thread,liked:Bool)async throws {
         let snapshot = try await Firestore.firestore().collection("threads").document(thread.threadId!).getDocument()
