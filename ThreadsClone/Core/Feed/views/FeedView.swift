@@ -36,10 +36,9 @@ struct FeedView: View {
             
             
             Task{
-                
                 try await viewModel.fetchThreads()
-               
-                
+                try await viewModel.fetchUser()
+            
             }
         }
     
