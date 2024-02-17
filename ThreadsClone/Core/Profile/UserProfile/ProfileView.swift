@@ -9,7 +9,15 @@ import SwiftUI
 
 struct ProfileView: View {
     let user : User
+    var viewModel : ProfilViewModel
+    @State var isFollowed = false
     
+    init(user: User) {
+        self.user = user
+        self.viewModel = ProfilViewModel()
+        self.isFollowed = viewModel.isFollowed(user: user)
+        }
+   
     var body: some View {
         
         ScrollView(showsIndicators: false){
@@ -17,15 +25,25 @@ struct ProfileView: View {
             VStack(spacing:20) {
                 ProfileHeaderView(user: State(initialValue: user))
                 Button{
-                    
+                    isFollowed.toggle()
+                    Task{
+                        try await viewModel.follow(user:user ,Isfollow:isFollowed)
+                    }
                 }label: {
-                    Text("Follow")
+                   
+                    Text(isFollowed  ? "UnFollow":"Follow")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundColor(.white)
+                       // .foregroundColor(viewModel.isFollowed == false ? .white:.gray)
                         .frame(width: 352, height: 32)
-                        .background(.black)
-                        .cornerRadius(8)
+                        .overlay{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(isFollowed ?  Color(.systemGray4) :.black, lineWidth: 1)
+                        }
+                        .foregroundColor(isFollowed ? .gray:.black)
+//                        .cornerRadius(8)
+                       
+                    
                 }
                 
                 //user content list view
@@ -43,10 +61,15 @@ struct ProfileView: View {
                 }
             }*/
         }
-       
+              
         .navigationBarTitleDisplayMode(.inline)
         .padding(.horizontal)
-        
+        .onAppear{
+
+            self.isFollowed = viewModel.isFollowed(user: user)
+
+        }
+     
         
     }
 }

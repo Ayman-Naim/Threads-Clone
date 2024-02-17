@@ -136,7 +136,9 @@ struct PostCell: View {
                             Text("\(thread.likes)")
                         }
                         if thread.repliesCount != 0 {
-                            Text("-")
+                            if thread.likes != 0 {
+                                Text("-")
+                            }
                             Text("replies")
                             Text("\(thread.repliesCount)")
                            

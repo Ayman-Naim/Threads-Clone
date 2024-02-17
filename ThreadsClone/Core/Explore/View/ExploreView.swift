@@ -10,6 +10,7 @@ import SwiftUI
 struct ExploreView: View {
     @State private var searchText = ""
     @StateObject var viewModel = ExploreViewModel()
+    
     var body: some View {
         NavigationStack{
             ScrollView{
