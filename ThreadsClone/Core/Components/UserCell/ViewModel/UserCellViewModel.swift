@@ -51,7 +51,17 @@ class UserCellViewModel: ObservableObject{
         
         try await  Firestore.firestore().collection("users").document(user.id).setData(["follwers":followedUserFollowersList], merge: true)
         try await  Firestore.firestore().collection("users").document(currentUser.id).setData(["following":followingUserFollowersList], merge: true)
-        
+        // notfication
+        let notfication = NotficationModel(notifcatonType: .follow, fromUserID: currentUser.id, noticationStatus:.unRead, timeStamp: Timestamp())
+               let notficationData: [String: Any] = [
+                   "id": notfication.id,
+                   "notifcatonType": notfication.notifcatonType.rawValue ,
+                   "fromUserID": notfication.fromUserID,
+                   "noticationStatus":notfication.noticationStatus.rawValue,
+                   "timeStamp":notfication.timeStamp
+               ]
+               
+        try await Firestore.firestore().collection("Notification").document(user.id).setData(["notifications": FieldValue.arrayUnion([notficationData])],merge: true)
       
         
         

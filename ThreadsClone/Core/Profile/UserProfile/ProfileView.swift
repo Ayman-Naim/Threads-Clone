@@ -31,7 +31,7 @@ struct ProfileView: View {
                     }
                 }label: {
                    
-                    Text(isFollowed  ? "UnFollow":"Follow")
+                    Text(isFollowed  ? "Following":"Follow")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                        // .foregroundColor(viewModel.isFollowed == false ? .white:.gray)
