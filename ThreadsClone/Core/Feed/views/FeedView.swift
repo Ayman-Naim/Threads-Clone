@@ -14,13 +14,18 @@ struct FeedView: View {
         return viewModel.currentUser
     }
     var body: some View {
-        NavigationStack{
+        NavigationView{
             ScrollView(showsIndicators:false){
                 LazyVStack{
                     
                     ForEach($viewModel.threads){
                         thread in
-                        PostCell(thread: thread,currentUser: currentUser ?? nil, threadsArray: $viewModel.threads)
+                        NavigationLink(destination: ThreadDetailsView(thread: thread, user:thread.user , threadsArray: $viewModel.threads)) {
+                            VStack{
+                                PostCell(thread: thread,currentUser: currentUser ?? nil, threadsArray: $viewModel.threads )
+                            }
+                        }
+                        
                         
                     }
                 }
@@ -37,7 +42,7 @@ struct FeedView: View {
             
             Task{
                 try await viewModel.fetchThreads()
-                try await viewModel.fetchUser()
+                 viewModel.fetchUser()
             
             }
         }

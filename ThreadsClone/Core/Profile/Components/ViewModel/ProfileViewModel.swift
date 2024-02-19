@@ -53,13 +53,14 @@ class ProfilViewModel :ObservableObject{
        
         if Isfollow{
             // notfication
-            let notfication = NotficationModel(notifcatonType: .follow, fromUserID: currentUser.id, noticationStatus:.unRead, timeStamp: Timestamp())
+            let notfication = NotficationModel(notifcatonType: .follow, fromUserID: currentUser.id, noticationStatus:.unRead, refrence: currentUser.id, timeStamp: Timestamp())
                    let notficationData: [String: Any] = [
                        "id": notfication.id,
                        "notifcatonType": notfication.notifcatonType.rawValue ,
                        "fromUserID": notfication.fromUserID,
                        "noticationStatus":notfication.noticationStatus.rawValue,
-                       "timeStamp":notfication.timeStamp
+                       "timeStamp":notfication.timeStamp,
+                       "refrence":notfication.refrence
                    ]
                    
             try await Firestore.firestore().collection("Notification").document(user.id).setData(["notifications": FieldValue.arrayUnion([notficationData])],merge: true)

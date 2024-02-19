@@ -19,6 +19,6 @@ class DeveloperPreview{
     
     
     let user = User(id: NSUUID().uuidString, fullName: "ayman Moahemd", email: "manameno_2012@yahoo.com", userName: "mnameno")
-    let notfication  =  NotficationModel(notifcatonType: .like, fromUserID: "", noticationStatus: .unRead, timeStamp: Timestamp())
+    let notfication  =  NotficationModel(notifcatonType: .like, fromUserID: "", noticationStatus: .unRead, refrence: "", timeStamp: Timestamp())
     let thread  = Thread(ownerUid: "123", timeStamp: Timestamp(), caption: "hi   ", likes: 0,likesAcounts: [] ,repliesCount: 0,repliesAccounts: [])
 }

@@ -12,7 +12,7 @@ struct NotficationModel:Codable ,Identifiable {
     let notifcatonType : NotificationType
     let fromUserID : String
     var noticationStatus:NotifcationStatus
-    
+    let refrence:String?
     var id = UUID().uuidString
     let timeStamp:Timestamp
     var fromUser : User?

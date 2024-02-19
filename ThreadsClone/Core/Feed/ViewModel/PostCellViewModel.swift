@@ -28,13 +28,14 @@ class PostCellViewModel :ObservableObject{
          //   thread.like( Likesusers: userID, liked: liked)
             try await Firestore.firestore().collection("threads").document(thread.threadId!).setData(["likesAcounts":likesArray!,"likes":threadData.likes+1],merge: true)
             // notification
-            let notfication = NotficationModel(notifcatonType: .like, fromUserID: (Currentuser?.id)!, noticationStatus:.unRead, timeStamp: Timestamp())
+            let notfication = NotficationModel(notifcatonType: .like, fromUserID: (Currentuser?.id)!, noticationStatus:.unRead, refrence: thread.id, timeStamp: Timestamp())
             let notficationData: [String: Any] = [
                 "id": notfication.id,
                 "notifcatonType": notfication.notifcatonType.rawValue ,
                 "fromUserID": notfication.fromUserID,
                 "noticationStatus":notfication.noticationStatus.rawValue,
-                "timeStamp":notfication.timeStamp
+                "timeStamp":notfication.timeStamp,
+                "refrence":notfication.refrence
             ]
             
             try await Firestore.firestore().collection("Notification").document(thread.ownerUid).setData(["notifications": FieldValue.arrayUnion([notficationData])],merge: true)
