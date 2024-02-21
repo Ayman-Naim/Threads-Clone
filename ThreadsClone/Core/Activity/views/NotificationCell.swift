@@ -9,8 +9,13 @@ import SwiftUI
 
 struct NotificationCell: View {
     @State var user:User
-    @State var isFollowed = false
     @Binding var notification : NotficationModel
+    @StateObject var viewModel : NotificationCellViewModel
+    init(user:User , notification:Binding< NotficationModel>){
+        self.user = user
+        self._notification = notification
+        self._viewModel = StateObject(wrappedValue: NotificationCellViewModel(notfication: notification.wrappedValue))
+    }
     var body: some View {
         HStack{
             ZStack{
@@ -47,11 +52,14 @@ struct NotificationCell: View {
             }
             if (notification.notifcatonType == .follow){
                 Button{
-                    isFollowed.toggle()
+                    viewModel.isFollowed.toggle()
+                    Task{
+                        try await viewModel.follow(user: user, Isfollow: viewModel.isFollowed)
+                    }
                     
                 }label: {
                     
-                    Text(isFollowed == false ? "Follow":"Following")
+                    Text(viewModel.isFollowed == false ? "Follow":"Following")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .frame(width: 100, height: 32)
@@ -59,12 +67,16 @@ struct NotificationCell: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color(.systemGray4), lineWidth: 1)
                         }
-                        .foregroundColor(isFollowed ? .gray:.black)
+                        .foregroundColor(viewModel.isFollowed ? .gray:.black)
                     
                 }.padding(.horizontal)
               
             }
             
+        }
+        
+        .onAppear{
+            _ = viewModel.isfollowed(user: user)
         }
     }
     

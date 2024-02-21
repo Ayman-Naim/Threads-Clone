@@ -23,7 +23,7 @@ struct ThreadDetailsView: View {
     var body: some View {
         NavigationStack{
             VStack(spacing: 10){
-                PostCell(thread:$thread , currentUser: user, threadsArray: $threadsArray)
+                PostCell(thread:$thread , currentUser: UserService.shared.currentUser, threadsArray: $threadsArray)
                 
                 ScrollView{
                     LazyVStack{

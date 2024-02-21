@@ -10,14 +10,15 @@ import SwiftUI
 struct ExploreView: View {
     @State private var searchText = ""
     @StateObject var viewModel = ExploreViewModel()
-    
+    @State var filterdArray : [User] = []
     var body: some View {
         NavigationStack{
             ScrollView{
                 LazyVStack{
-                    ForEach(viewModel.users) { user in
+                    ForEach(searchText == "" ? viewModel.users:filterdArray) { user in
                         NavigationLink(value: user) {
                             VStack {
+                                
                                 UserCell(user: user)
                                 Divider()
                             }
@@ -32,6 +33,13 @@ struct ExploreView: View {
             })
             .navigationTitle("Search")
             .searchable(text: $searchText,prompt: "Search")
+            .onChange(of: searchText) { newValue in
+                
+                filterdArray = viewModel.users.filter({ user in
+                    user.userName.localizedCaseInsensitiveContains(newValue)
+                })
+              
+            }
         }
         .onAppear{
             Task{

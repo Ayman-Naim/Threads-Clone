@@ -16,7 +16,7 @@ struct NotficationModel:Codable ,Identifiable {
     var id = UUID().uuidString
     let timeStamp:Timestamp
     var fromUser : User?
-  
+    var threadRef : Thread?
     
 }
 struct Notfictation:Codable{

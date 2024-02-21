@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ActivityView: View {
     @State var SelectedFilter = 0
+    @State var threads = [Thread]()
     @StateObject var viewModel : NotficationViewModel = NotficationViewModel()
     var body: some View {
         NavigationStack{
@@ -37,8 +38,22 @@ struct ActivityView: View {
                     }
                     
                     ForEach(0..<viewModel.notificatons.count,id: \.self){ index in
-                        NotificationCell(user: viewModel.notificatons[index].fromUser!, notification: $viewModel.notificatons[index])
-                        Divider()
+                        NavigationLink{
+                            switch viewModel.notificatons[index].notifcatonType{
+                            case .replay,.like:
+                                
+                                ThreadDetailsView(thread: $viewModel.notificatons[index].threadRef.toUnwrapped(defaultValue: viewModel.notificatons[index].threadRef!) , user:$viewModel.currentUser , threadsArray: $threads)
+                            case.follow:
+                                ProfileView(user: viewModel.notificatons[index].fromUser!)
+                            
+                            }
+                            
+                        }label: {
+                           
+                                NotificationCell(user: viewModel.notificatons[index].fromUser!, notification: $viewModel.notificatons[index])
+                                Divider()
+                            
+                        }
                     }
                 }
                
@@ -51,10 +66,22 @@ struct ActivityView: View {
                     try await viewModel.getNotfications()
                 }
             }
+            .onAppear{
+                Task{
+                    try await viewModel.getNotfications()
+                }
+            }
         }
         
         
        
+    }
+    
+   
+}
+extension Binding {
+     func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
+        Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
     }
 }
 

@@ -43,17 +43,17 @@ struct Replay: View {
                             Spacer()
                         }
                         
-                        HStack{
+                       /* HStack{
                             
-                            
-                            
-                            Rectangle()
-                                .fill(.secondary)
-                                .frame(width: 2.4)
-                                .edgesIgnoringSafeArea(.horizontal)
-                            
-                        } .frame(width: 40, height: 40)
                         
+                            
+//                            Rectangle()
+//                                .fill(.secondary)
+//                                .frame(width: 2.4)
+//                                .edgesIgnoringSafeArea(.horizontal)
+                            
+                        } .frame(width: 40, height: 40)*/
+                        Divider()
                         
                         
                         ForEach(0..<(viewModel.replays?.repliesAccounts?.count ?? 0) ,id: \.self){ index in
