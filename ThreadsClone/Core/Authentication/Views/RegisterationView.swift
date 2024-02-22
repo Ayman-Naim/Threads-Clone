@@ -22,24 +22,57 @@ struct RegisterationView: View {
                 .frame(width: 120,height: 120)
             
             VStack{
-                TextField("Enter Your Email", text: $viewModel.email)
+                TextField("Enter Your Email", text: $viewModel.email,onCommit: {
+                    if !viewModel.isEmailValid(){
+                        viewModel.error = SignError.invalidEmail
+                        signUpError = true
+                        showAlert = true 
+                        }
+
+                })
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
                     .modifier(ThreadsTextfiledModifires())
-                
-                SecureField("Enter Your password", text: $viewModel.password)
+                    .submitLabel(.next)
+              
+                SecureField("Enter Your password", text: $viewModel.password,onCommit: {
+                    if !viewModel.isPasswordValid(){
+                        viewModel.error = SignError.invalidPassword
+                        signUpError = true
+                        showAlert = true
+                        }
+
+                })
                     .modifier(ThreadsTextfiledModifires())
                     .autocorrectionDisabled()
-                TextField("Enter Your Full name", text: $viewModel.fullName)
+                    .submitLabel(.next)
+                TextField("Enter Your Full name", text: $viewModel.fullName,onCommit: {
+                    if !viewModel.isFullNameValid(){
+                        viewModel.error = SignError.invalidName
+                        signUpError = true
+                        showAlert = true
+                        }
+
+                })
                     .modifier(ThreadsTextfiledModifires())
                     .autocorrectionDisabled()
-                TextField("Enter Your username", text: $viewModel.userName)
+                    .submitLabel(.next)
+                TextField("Enter Your username", text: $viewModel.userName,onCommit: {
+                    if !viewModel.isUserNameValid(){
+                        viewModel.error = SignError.invalidUserName
+                        signUpError = true
+                        showAlert = true
+                        }
+
+                })
                     .modifier(ThreadsTextfiledModifires())
                     .autocorrectionDisabled()
                     .autocapitalization(.none)
+                    .submitLabel(.done)
                 
             }
-            
+
+          
             Button{
                
                 Task{ try await viewModel.CreateUser()
@@ -120,7 +153,21 @@ struct RegisterationView: View {
         }
     }
 }
-
+struct ShakeEffect: GeometryEffect {
+       func effectValue(size: CGSize) -> ProjectionTransform {
+           return ProjectionTransform(CGAffineTransform(translationX: -30 * sin(position * 2 * .pi), y: 0))
+       }
+       
+       init(shakes: Int) {
+           position = CGFloat(shakes)
+       }
+       
+       var position: CGFloat
+       var animatableData: CGFloat {
+           get { position }
+           set { position = newValue }
+       }
+   }
 struct RegisterationView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterationView()

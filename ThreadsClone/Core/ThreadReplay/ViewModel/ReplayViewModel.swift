@@ -37,8 +37,21 @@ class ReplayViewModel:ObservableObject{
                    "replayUserId": newReplay.replayUserId,
                    "timeStamp":newReplay.timeStamp
                ]
- 
+ // replay
         try await Firestore.firestore().collection("threads").document(thread.threadId!).updateData(["replys": FieldValue.arrayUnion([replayData]),"repliesCount": FieldValue.increment(Int64(1))])
+ // notfication
+        let notfication = NotficationModel(notifcatonType: .replay, fromUserID: newReplay.replayUserId, noticationStatus:.unRead, refrence: thread.id, timeStamp: Timestamp())
+        let notficationData: [String: Any] = [
+            "id": notfication.id,
+            "notifcatonType": notfication.notifcatonType.rawValue ,
+            "fromUserID": notfication.fromUserID,
+            "noticationStatus":notfication.noticationStatus.rawValue,
+            "timeStamp":notfication.timeStamp,
+            "refrence":notfication.refrence
+        ]
+        
+        try await Firestore.firestore().collection("Notification").document(thread.ownerUid).setData(["notifications": FieldValue.arrayUnion([notficationData])],merge: true)
+// update user
         if replays?.repliesAccounts == nil{
             replays?.repliesAccounts = []
         }
