@@ -28,13 +28,11 @@ It is an clonning threads Application  .
 <img src="https://github.com/Ayman-Naim/Nexus-Store/blob/dev/Mockups/NexusStoreDemo.gif" alt="Demo" width="30%" height="30%">
 <!-- ____________________________________________________________________________ -->
 ## Table of Contents
- - [Features](#features)
+ - [Features](#Features)
+ - [Technologies](#technologies)
  - [Dependencies](#dependencies)
  - [Demo Video](#demo-video)
  - [Screenshot](#screenshot)
-
-
-
 <!-- ____________________________________________________________________________ -->
 ## Features 
 ### Thread application clone (User App)
