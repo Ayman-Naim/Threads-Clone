@@ -11,11 +11,16 @@
 
 <!-- Main Screenshot -->
 <p>
-    <img src="Mockups/Hotpot 0.png" width="19%" />
-    <img src="Mockups/Hotpot 1.png" width="19%" />
-    <img src="Mockups/Hotpot 2.png" width="19%" />
-    <img src="Mockups/Hotpot 3.png" width="19%" />
-    <img src="Mockups/Hotpot 4.png" width="19%" />
+    <img src="Screens/1.png" width="19%" />
+    <img src="Screens/2.png" width="19%" />
+    <img src="Screens/3.png" width="19%" />
+    <img src="Screens/4.png" width="19%" />
+    <img src="Screens/5.png" width="19%" />
+    <img src="Screens/6.png" width="19%" />
+    <img src="Screens/7.png" width="19%" />
+    <img src="Screens/8.png" width="19%" />
+    <img src="Screens/9.png" width="19%" />
+    
 </p>
 
 <!-- Project bref -->
