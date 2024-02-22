@@ -14,7 +14,7 @@ class RegisterationViewModel:ObservableObject{
     @Published  var userName = ""
     @Published public  var userSignupSucsess = false
     @Published var formIsValid = false
-    
+    @Published var shouldShake = false
     @MainActor
     func CreateUser () async throws{
         do{
@@ -39,16 +39,14 @@ class RegisterationViewModel:ObservableObject{
     
 }
 
-
-
-
-
 extension RegisterationViewModel {
    
     //user name valdiation
     func isUserNameValid()->Bool  {
         let userNamePredicate = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z._%+-]{2,64}")
-        return userNamePredicate.evaluate(with: userName)
+        let res = userNamePredicate.evaluate(with: userName)
+        self.shouldShake = res 
+        return res
     }
     //email valdiation
     func isEmailValid()->Bool{

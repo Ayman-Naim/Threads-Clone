@@ -25,7 +25,7 @@ struct ExploreView: View {
                             .padding(.vertical , 4)
                         }
                     }
-                }
+                }.padding()
             }
            
             .navigationDestination(for: User.self, destination: { user in

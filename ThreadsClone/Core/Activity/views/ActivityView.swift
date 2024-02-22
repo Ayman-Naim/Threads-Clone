@@ -42,7 +42,7 @@ struct ActivityView: View {
                             switch viewModel.notificatons[index].notifcatonType{
                             case .replay,.like:
                                 
-                                ThreadDetailsView(thread: $viewModel.notificatons[index].threadRef.toUnwrapped(defaultValue: viewModel.notificatons[index].threadRef!) , user:$viewModel.currentUser , threadsArray: $threads)
+                                ThreadDetailsView(thread: ($viewModel.notificatons[index].threadRef.toUnwrapped(defaultValue:viewModel.notificatons[index].threadRef! )) , user:$viewModel.notificatons[index].fromUser , threadsArray: $threads)
                             case.follow:
                                 ProfileView(user: viewModel.notificatons[index].fromUser!)
                             

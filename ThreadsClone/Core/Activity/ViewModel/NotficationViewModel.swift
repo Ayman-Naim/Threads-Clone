@@ -33,7 +33,8 @@ class NotficationViewModel:ObservableObject{
         for index in 0..<notifications.notifications.count{
             if(notifications.notifications[index].notifcatonType != .follow ){
           
-                let thread = try await self.getThread(ByID: notifications.notifications[index].refrence!)
+                var thread = try await self.getThread(ByID: notifications.notifications[index].refrence!)
+                thread.user = try await UserService.fetchUser(withUid: thread.ownerUid)
                 notifications.notifications[index].threadRef = thread
             }
             
@@ -48,7 +49,8 @@ class NotficationViewModel:ObservableObject{
     
     func getThread(ByID ThreadID:String)async throws->Thread{
         let snapshot =  try await Firestore.firestore().collection("threads").document(ThreadID).getDocument()
-        let thread = try  snapshot.data(as: Thread.self) 
+        let thread = try  snapshot.data(as: Thread.self)
+        
         return thread
                 
     }
