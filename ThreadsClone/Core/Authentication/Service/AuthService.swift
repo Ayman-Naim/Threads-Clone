@@ -62,7 +62,9 @@ class AuthService {
         let user = User(id: id, fullName: fullName, email: email, userName: userName)
         guard let userData = try? Firestore.Encoder().encode(user) else{ return }
         try await Firestore.firestore().collection("users").document(id).setData(userData)
-          
+        let notification = Notfictation(notifications: [])
+        guard let notficationData = try? Firestore.Encoder().encode(notification) else{ return }
+        try await Firestore.firestore().collection("Notification").document(id).setData(notficationData)
     }
     
     

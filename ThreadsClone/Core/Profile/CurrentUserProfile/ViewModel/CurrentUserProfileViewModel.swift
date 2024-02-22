@@ -17,13 +17,18 @@ class CurrentUserProfileViewModel :ObservableObject {
    
     private var cancellable = Set<AnyCancellable>()
     init(){
-        setProfileData()
+        Task{
+            try await setProfileData()
+        }
     }
-       
-     func setProfileData() {
-         Task {try await UserService.shared.fetchCurrentUser()}
+       @MainActor
+     func setProfileData()async throws {
+       try await UserService.shared.fetchCurrentUser()
         UserService.shared.$currentUser.sink{ [weak self ] user in
-            self?.currentUser = user
+            DispatchQueue.main.async {
+                self?.currentUser = user
+            }
+            
             print("DEBUG: user in view model from combine is \(user)")
         }.store(in:&cancellable)
         

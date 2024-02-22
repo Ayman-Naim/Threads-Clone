@@ -13,20 +13,27 @@ struct CurrentUserProfileView: View {
     @Namespace var animation
     @State private var showEditProfile =  false
     
-    private var filterBarWidth:CGFloat{
+     private var filterBarWidth:CGFloat{
         let count = CGFloat(ProfileThreadFilter.allCases.count)
         return UIScreen.main.bounds.width / count - 16
     }
     
-    private var currentUser:User?{
-        return viewModel.currentUser
-    }
+     private var currentUser:User?{
+        return UserService.shared.currentUser
+        }
+    
+   // @State var currentUser2 : User?
+//    init() {
+//        self.currentUser = UserService.shared.currentUser
+//    }
+    
+ 
     var body: some View {
         NavigationStack{
             ScrollView(showsIndicators: false){
                 //bio and stats
                 VStack(spacing:20) {
-                    ProfileHeaderView(user: State(initialValue: currentUser))
+                    ProfileHeaderView(user:  State (initialValue: currentUser))
                     Button{
                         showEditProfile.toggle()
                     }label: {
@@ -66,12 +73,18 @@ struct CurrentUserProfileView: View {
             
         }
         .onAppear{
-     
-            viewModel.setProfileData()
-            
+            Task{
+               try await  viewModel.setProfileData()
+                //self.currentUser = UserService.shared.currentUser
+            }
+           
             }
         .refreshable{
-            viewModel.setProfileData()
+            Task{
+               try await  viewModel.setProfileData()
+               // self.currentUser = UserService.shared.currentUser
+            }
+            
             
         }
         
