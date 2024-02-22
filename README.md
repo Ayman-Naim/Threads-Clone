@@ -29,7 +29,6 @@ It is an clonning threads Application  .
 <!-- ____________________________________________________________________________ -->
 ## Table of Contents
  - [Features](#features)
- - [Technologies](#technologies)
  - [Dependencies](#dependencies)
  - [Demo Video](#demo-video)
  - [Screenshot](#screenshot)
