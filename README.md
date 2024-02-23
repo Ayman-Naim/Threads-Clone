@@ -30,7 +30,7 @@ It is an clonning threads Application  .
 ## Demo Video
 ### Thread application clone (User Demo)
 
-<img src="https://github.com/Ayman-Naim/Threads-Clone/blob/main/Screens/demo.gif" alt="Demo" width="50%" height="50%">
+<img src="https://github.com/Ayman-Naim/Threads-Clone/blob/main/Screens/demo.gif" alt="Demo" width="85%" height="85%">
 <!-- ____________________________________________________________________________ -->
 
 <!-- ____________________________________________________________________________ -->
