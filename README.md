@@ -28,9 +28,9 @@ It is an clonning threads Application  .
 
 <!-- ____________________________________________________________________________ -->
 ## Demo Video
-### Nexus Store (User Demo)
+### Thread application clone (User Demo)
 
-<img src="https://github.com/Ayman-Naim/Nexus-Store/blob/dev/Mockups/NexusStoreDemo.gif" alt="Demo" width="30%" height="30%">
+<img src="https://github.com/Ayman-Naim/Nexus-Store/blob/main/Mockups/Screens.gif" alt="Demo" width="30%" height="30%">
 <!-- ____________________________________________________________________________ -->
 
 <!-- ____________________________________________________________________________ -->
